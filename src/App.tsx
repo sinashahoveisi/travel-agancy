@@ -1,12 +1,11 @@
-import MyRoutes from 'routes'
+import MyRoutes from './routes';
 
 const App = () => {
-
   return (
     <div className="App">
-        <MyRoutes />
+      <MyRoutes />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;

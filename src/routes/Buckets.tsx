@@ -1,13 +1,12 @@
-import { Route, Routes } from "react-router-dom";
-import BucketsPage from "pages/bucket/Buckets";
+import {Route, Routes} from 'react-router-dom';
+import BucketsPage from '@/pages/bucket/Buckets';
 
-const  Buckets = () => {
-
+const Buckets = () => {
   return (
-      <Routes>
-          <Route path="buckets" element={<BucketsPage />} />
-      </Routes>
-  )
-}
+    <Routes>
+      <Route path="/" element={<BucketsPage />} />
+    </Routes>
+  );
+};
 
-export default Buckets
+export default Buckets;

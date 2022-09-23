@@ -47,6 +47,7 @@
     "no-console": "warn",
     "valid-typeof": "error",
     "camelcase": "off",
+    "react/react-in-jsx-scope": "off",
     "react-hooks/exhaustive-deps": "off",
     "no-useless-return": "off",
     "react/no-unused-prop-types": "off",

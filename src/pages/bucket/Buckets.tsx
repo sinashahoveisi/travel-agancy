@@ -1,10 +1,7 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from 'react-router-dom';
 
 const Buckets = () => {
+  return <p>buckets</p>;
+};
 
-  return (
-      <p>buckets</p>
-  )
-}
-
-export default Buckets
+export default Buckets;

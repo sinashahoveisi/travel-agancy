@@ -1,10 +1,7 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from 'react-router-dom';
 
 const Resorts = () => {
+  return <p>resorts</p>;
+};
 
-  return (
-      <p>resorts</p>
-  )
-}
-
-export default Resorts
+export default Resorts;
