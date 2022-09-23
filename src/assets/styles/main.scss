@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind variants;
+@tailwind screens;
+
+@layer base {
+  @import 'fonts';
+  @import 'variables';
+  @import 'mixin';
+  @import 'custom';
+
+  html,
+  body {
+    @apply h-full;
+    direction: $direction;
+    font-family: $fontFamily;
+  }
+}
