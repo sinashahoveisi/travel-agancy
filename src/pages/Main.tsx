@@ -1,11 +1,14 @@
-import {NavLink, Outlet} from 'react-router-dom';
+import {Link, NavLink, Outlet} from 'react-router-dom';
+import type {FC} from 'react';
 
-const Main = () => {
+const Main: FC = () => {
   return (
     <>
       <header className="navbar bg-base-100">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl normal-case">TravelAg</a>
+          <Link to="/" className="btn btn-ghost text-xl normal-case">
+            TravelAg
+          </Link>
         </div>
         <div className="flex-none">
           <ul className="menu menu-horizontal p-0">

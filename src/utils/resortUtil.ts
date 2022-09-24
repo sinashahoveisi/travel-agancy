@@ -4,6 +4,7 @@ import find from 'lodash/find';
 import orderBy from 'lodash/orderBy';
 import resortsData from '@/assets/constants/data.json';
 import type {FilterResortsProps, ResortProps, SortTypeResortsType} from '@/types/resort';
+import {toNumberMoney} from '@/utils/commonUtil';
 
 export const getResort = (id: number | string): ResortProps | undefined => {
   return find(resortsData, ['id', +id]);
@@ -15,8 +16,8 @@ export const filterResorts = (filterParams?: FilterResortsProps) => {
     resortsData,
     (resort: ResortProps) =>
       (filterParams?.title && includes(resort?.title, filterParams?.title)) ||
-      (filterParams?.minPrice && +resort?.price >= filterParams?.minPrice) ||
-      (filterParams?.maxPrice && +resort?.price <= filterParams?.maxPrice)
+      (toNumberMoney(resort?.price) >= (filterParams?.minPrice || 0) &&
+        toNumberMoney(resort?.price) <= (filterParams?.maxPrice || Infinity))
   );
 };
 

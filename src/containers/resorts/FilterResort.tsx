@@ -18,9 +18,18 @@ const validationSchema = yup.object().shape({
 });
 
 const FilterResort: FC<Props> = ({onFilter, allowRemoveFilter}) => {
-  const {control, handleSubmit} = useForm<FilterResortsProps>({
+  const {control, handleSubmit, reset} = useForm<FilterResortsProps>({
     resolver: yupResolver(validationSchema)
   });
+
+  const onRemoveFilter = () => {
+    reset({
+      title: '',
+      minPrice: '',
+      maxPrice: ''
+    });
+    onFilter();
+  };
 
   return (
     <section>
@@ -40,7 +49,7 @@ const FilterResort: FC<Props> = ({onFilter, allowRemoveFilter}) => {
                 'justify-end': !allowRemoveFilter
               })}>
               {allowRemoveFilter && (
-                <button type="button" className="btn-danger btn" onClick={() => onFilter()}>
+                <button type="button" className="btn-danger btn" onClick={onRemoveFilter}>
                   Remove Filter
                 </button>
               )}

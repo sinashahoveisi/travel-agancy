@@ -1,6 +1,6 @@
 import {atomWithReducer} from 'jotai/utils';
 import remove from 'lodash/remove';
-import {getFromStorage, saveToStorage} from '@/utils/storage';
+import {getFromStorage, saveToStorage} from '@/utils/storageUtil';
 import type {ResortProps} from '@/types/resort';
 import type {BucketActionProps} from '@/types/bucket';
 

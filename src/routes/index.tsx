@@ -6,7 +6,7 @@ import Main from '@/pages/Main';
 const MyRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Main />}>
+      <Route element={<Main />}>
         <Route path="/resorts/*" element={<Resorts />} />
         <Route path="/buckets/*" element={<Buckets />} />
         <Route path="*" element={<Navigate to="/resorts" replace />} />

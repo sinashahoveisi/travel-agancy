@@ -22,7 +22,7 @@ const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucke
 
   return (
     <Link to={`/resorts/${resort?.id}/${resort?.title}`}>
-      <article className="card glass w-full">
+      <article className="card glass h-full w-full">
         {resort?.imageUrl && (
           <figure>
             <img className="w-full" src={resort?.imageUrl} alt={resort?.title} />
@@ -34,11 +34,11 @@ const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucke
           <div className="card-actions mt-2 items-center justify-between">
             <div className="badge badge-outline">{resort?.price}</div>
             {isInBucket ? (
-              <button type="button" className="btn btn-error" onClick={onRemoveFromBucket}>
+              <button type="button" className="text btn btn-error btn-xs" onClick={onRemoveFromBucket}>
                 Remove From Bucket
               </button>
             ) : (
-              <button type="button" className="btn btn-primary" onClick={onAddToBucket}>
+              <button type="button" className="btn btn-primary btn-xs" onClick={onAddToBucket}>
                 Add to Bucket
               </button>
             )}
