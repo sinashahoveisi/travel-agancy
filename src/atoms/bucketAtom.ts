@@ -7,12 +7,15 @@ import type {BucketActionProps} from '@/types/bucket';
 function callReducer(state: ResortProps[], action: BucketActionProps) {
   switch (action.type) {
     case 'ADD_RESORT':
-      const newAddState = [...state, action.resort];
-      saveToStorage('bucket', newAddState);
-      return [...state, action.resort];
+      if (action?.resort) {
+        const newAddState = [...state, action.resort];
+        saveToStorage('bucket', newAddState);
+        return [...state, action.resort];
+      }
+      return state;
     case 'DELETE_RESORT':
       const newRemoveState = [...state];
-      remove(newRemoveState, ['id', action.id]);
+      remove(newRemoveState, ['id', action?.id]);
       saveToStorage('bucket', newRemoveState);
       return newRemoveState;
     default:
