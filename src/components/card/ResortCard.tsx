@@ -12,7 +12,7 @@ const ResortCard: FC<Props> = ({title, description, imageUrl, price}) => {
     <article className="card glass w-full">
       {imageUrl && (
         <figure>
-          <img src={imageUrl} alt={title} />
+          <img className="w-full" src={imageUrl} alt={title} />
         </figure>
       )}
       <div className="card-body">

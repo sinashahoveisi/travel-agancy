@@ -11,7 +11,7 @@ const SortResort: FC<Props> = ({onChange}) => {
       <h4 className="mr-2 text-sm">SortBy:(click for change)</h4>
       <label htmlFor="sort" className="swap text-lg">
         <input
-          name="sort"
+          id="sort"
           type="checkbox"
           onChange={(event: ChangeEvent<HTMLInputElement>) => {
             onChange(event.target.checked ? 'price' : 'title');

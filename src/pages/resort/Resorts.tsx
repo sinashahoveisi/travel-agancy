@@ -1,5 +1,6 @@
 import map from 'lodash/map';
 import {useState, useMemo} from 'react';
+import isUndefined from 'lodash/isUndefined';
 import {filterResorts, sortResorts} from '@/utils/resortUtil';
 import ResortCard from '@/components/card/ResortCard';
 import type {FilterResortsProps, ResortProps, SortTypeResortsProps} from '@/types/resort';
@@ -26,7 +27,7 @@ const Resorts = () => {
           </div>
         </div>
       </div>
-      <FilterResort onFilter={setFilters} />
+      <FilterResort onFilter={setFilters} allowRemoveFilter={!isUndefined(filters)} />
       <SortResort onChange={setSortType} />
       <section className="xxl:grid-cols-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {map(sortedFilteredResorts, (resort: ResortProps) => (

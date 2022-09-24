@@ -19,5 +19,5 @@ export const filterResorts = (filterParams?: FilterResortsProps) => {
   );
 };
 
-export const sortResorts = (filteredResorts: ResortProps[], type: SortTypeResortsProps) =>
+export const sortResorts = (filteredResorts: any[], type: SortTypeResortsProps) =>
   orderBy(filteredResorts, [type], ['asc']);
