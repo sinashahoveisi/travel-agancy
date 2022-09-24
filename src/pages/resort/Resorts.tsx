@@ -3,17 +3,20 @@ import {useAtom} from 'jotai';
 import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import some from 'lodash/some';
+import get from 'lodash/get';
 import {filterResorts, sortResorts} from '@/utils/resortUtil';
 import ResortCard from '@/components/card/ResortCard';
 import type {FilterResortsProps, ResortProps, SortTypeResortsType} from '@/types/resort';
 import FilterResort from '@/containers/resorts/FilterResort';
 import SortResort from '@/containers/resorts/SortResort';
 import bucketAtom from '@/atoms/bucketAtom';
+import PaginateResort from '@/containers/resorts/PaginateResort';
 
 const Resorts = () => {
   const [bucket, setBucket] = useAtom(bucketAtom);
   const [filters, setFilters] = useState<FilterResortsProps | undefined>(undefined);
   const [sortType, setSortType] = useState<SortTypeResortsType>('title');
+  const [page, setPage] = useState<number>(1);
 
   const filteredResorts = useMemo(() => filterResorts(filters), [filters]);
   const sortedFilteredResorts = useMemo(() => sortResorts(filteredResorts, sortType), [filteredResorts, sortType]);
@@ -28,8 +31,9 @@ const Resorts = () => {
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Resorts Section</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
-              deleniti eaque aut repudiandae et a id nisi.
+              All resorts are displayed in this section. By clicking on the resort filter, you can filter the resorts
+              based on the title and the minimum and maximum price, and by clicking on sort, you can sort the resorts
+              based on the title and price. There is also a pagination section at the bottom of the page.
             </p>
           </div>
         </div>
@@ -37,7 +41,7 @@ const Resorts = () => {
       <FilterResort onFilter={setFilters} allowRemoveFilter={!isUndefined(filters)} />
       <SortResort onChange={setSortType} />
       <section className="xxl:grid-cols-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {map(sortedFilteredResorts, (resort: ResortProps) => (
+        {map(get(sortedFilteredResorts, page - 1), (resort: ResortProps) => (
           <ResortCard
             key={resort?.id}
             resort={resort}
@@ -46,6 +50,7 @@ const Resorts = () => {
             removeFromBucket={removeFromBucket}
           />
         ))}
+        <PaginateResort currentPage={page} lastPage={sortedFilteredResorts?.length} onChangePage={setPage} />
       </section>
     </main>
   );

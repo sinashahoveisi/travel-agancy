@@ -8,8 +8,8 @@ export interface ResortProps {
 
 export type FilterResortsProps = {
   title?: string;
-  minPrice?: number;
-  maxPrice?: number;
+  minPrice?: number | '';
+  maxPrice?: number | '';
 };
 
 export type SortTypeResortsType = 'title' | 'price';

@@ -19,9 +19,12 @@ const PaginateResort: FC<Props> = ({currentPage = 1, lastPage, onChangePage}) =>
         {currentPage !== 1 && (
           <button
             type="button"
-            className="ml-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"
+            className="mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"
             onClick={() => onChangePage((currentPage || 1) - 1)}>
-            r
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z" />
+            </svg>
           </button>
         )}
         <div className="flex h-8 rounded-full bg-gray-200 font-medium">
@@ -77,9 +80,12 @@ const PaginateResort: FC<Props> = ({currentPage = 1, lastPage, onChangePage}) =>
         {currentPage !== lastPage && (
           <button
             type="button"
-            className="mr-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"
+            className="ml-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"
             onClick={() => onChangePage((currentPage || 1) + 1)}>
-            l
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+              <path fill="none" d="M0 0h24v24H0z" />
+              <path d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z" />
+            </svg>
           </button>
         )}
       </div>
