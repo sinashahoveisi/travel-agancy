@@ -1,8 +1,8 @@
+import {useState, useMemo} from 'react';
+import {useAtom} from 'jotai';
+import isUndefined from 'lodash/isUndefined';
 import map from 'lodash/map';
 import some from 'lodash/some';
-import {useState, useMemo} from 'react';
-import isUndefined from 'lodash/isUndefined';
-import {useAtom} from 'jotai';
 import {filterResorts, sortResorts} from '@/utils/resortUtil';
 import ResortCard from '@/components/card/ResortCard';
 import type {FilterResortsProps, ResortProps, SortTypeResortsProps} from '@/types/resort';

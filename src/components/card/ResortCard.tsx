@@ -1,4 +1,4 @@
-import type {FC} from 'react';
+import {FC, memo, MouseEvent} from 'react';
 import {Link} from 'react-router-dom';
 import type {ResortProps} from '@/types/resort';
 
@@ -10,6 +10,16 @@ interface Props {
 }
 
 const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucket}) => {
+  const onRemoveFromBucket = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    removeFromBucket(resort?.id);
+  };
+
+  const onAddToBucket = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    addToBucket(resort);
+  };
+
   return (
     <Link to={`/resorts/${resort?.id}/${resort?.title}`}>
       <article className="card glass w-full">
@@ -24,11 +34,11 @@ const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucke
           <div className="card-actions mt-2 items-center justify-between">
             <div className="badge badge-outline">{resort?.price}</div>
             {isInBucket ? (
-              <button type="button" className="btn btn-error" onClick={() => removeFromBucket(resort?.id)}>
+              <button type="button" className="btn btn-error" onClick={onRemoveFromBucket}>
                 Remove From Bucket
               </button>
             ) : (
-              <button type="button" className="btn btn-primary" onClick={() => addToBucket(resort)}>
+              <button type="button" className="btn btn-primary" onClick={onAddToBucket}>
                 Add to Bucket
               </button>
             )}
@@ -39,4 +49,4 @@ const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucke
   );
 };
 
-export default ResortCard;
+export default memo(ResortCard);
