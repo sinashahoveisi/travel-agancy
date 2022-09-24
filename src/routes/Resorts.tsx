@@ -5,7 +5,7 @@ import ResortPage from '@/pages/resort/Resort';
 const Resorts = () => {
   return (
     <Routes>
-      <Route path=":id" element={<ResortPage />} />
+      <Route path=":id/:title" element={<ResortPage />} />
       <Route path="/" element={<ResortsPage />} />
     </Routes>
   );

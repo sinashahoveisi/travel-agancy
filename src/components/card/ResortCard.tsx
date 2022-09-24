@@ -1,7 +1,6 @@
 import type {FC} from 'react';
-import {useAtom} from 'jotai';
-import bucketAtom from '@/atoms/bucketAtom';
-import {ResortProps} from '@/types/resort';
+import {Link} from 'react-router-dom';
+import type {ResortProps} from '@/types/resort';
 
 interface Props {
   resort: ResortProps;
@@ -12,29 +11,31 @@ interface Props {
 
 const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucket}) => {
   return (
-    <article className="card glass w-full">
-      {resort?.imageUrl && (
-        <figure>
-          <img className="w-full" src={resort?.imageUrl} alt={resort?.title} />
-        </figure>
-      )}
-      <div className="card-body">
-        <h2 className="card-title">{resort?.title}</h2>
-        <p className="line-clamp-4">{resort?.description}</p>
-        <div className="card-actions mt-2 items-center justify-between">
-          <div className="badge badge-outline">{resort?.price}</div>
-          {isInBucket ? (
-            <button type="button" className="btn btn-error" onClick={() => removeFromBucket(resort?.id)}>
-              Remove From Bucket
-            </button>
-          ) : (
-            <button type="button" className="btn btn-primary" onClick={() => addToBucket(resort)}>
-              Add to Bucket
-            </button>
-          )}
+    <Link to={`/resorts/${resort?.id}/${resort?.title}`}>
+      <article className="card glass w-full">
+        {resort?.imageUrl && (
+          <figure>
+            <img className="w-full" src={resort?.imageUrl} alt={resort?.title} />
+          </figure>
+        )}
+        <div className="card-body">
+          <h2 className="card-title">{resort?.title}</h2>
+          <p className="line-clamp-4">{resort?.description}</p>
+          <div className="card-actions mt-2 items-center justify-between">
+            <div className="badge badge-outline">{resort?.price}</div>
+            {isInBucket ? (
+              <button type="button" className="btn btn-error" onClick={() => removeFromBucket(resort?.id)}>
+                Remove From Bucket
+              </button>
+            ) : (
+              <button type="button" className="btn btn-primary" onClick={() => addToBucket(resort)}>
+                Add to Bucket
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+    </Link>
   );
 };
 
