@@ -1,28 +1,37 @@
 import type {FC} from 'react';
+import {useAtom} from 'jotai';
+import bucketAtom from '@/atoms/bucketAtom';
+import {ResortProps} from '@/types/resort';
 
 interface Props {
-  title: string;
-  description: string;
-  price: string;
-  imageUrl?: string;
+  resort: ResortProps;
+  isInBucket?: boolean;
+  addToBucket(resort: ResortProps): void;
+  removeFromBucket(id: number): void;
 }
 
-const ResortCard: FC<Props> = ({title, description, imageUrl, price}) => {
+const ResortCard: FC<Props> = ({resort, isInBucket, addToBucket, removeFromBucket}) => {
   return (
     <article className="card glass w-full">
-      {imageUrl && (
+      {resort?.imageUrl && (
         <figure>
-          <img className="w-full" src={imageUrl} alt={title} />
+          <img className="w-full" src={resort?.imageUrl} alt={resort?.title} />
         </figure>
       )}
       <div className="card-body">
-        <h2 className="card-title">{title}</h2>
-        <p className="line-clamp-4">{description}</p>
+        <h2 className="card-title">{resort?.title}</h2>
+        <p className="line-clamp-4">{resort?.description}</p>
         <div className="card-actions mt-2 items-center justify-between">
-          <div className="badge badge-outline">{price}</div>
-          <button type="button" className="btn btn-primary">
-            Add to Bucket
-          </button>
+          <div className="badge badge-outline">{resort?.price}</div>
+          {isInBucket ? (
+            <button type="button" className="btn btn-error" onClick={() => removeFromBucket(resort?.id)}>
+              Remove From Bucket
+            </button>
+          ) : (
+            <button type="button" className="btn btn-primary" onClick={() => addToBucket(resort)}>
+              Add to Bucket
+            </button>
+          )}
         </div>
       </div>
     </article>

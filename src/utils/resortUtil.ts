@@ -4,10 +4,6 @@ import orderBy from 'lodash/orderBy';
 import resortsData from '@/assets/constants/data.json';
 import type {FilterResortsProps, ResortProps, SortTypeResortsProps} from '@/types/resort';
 
-export const getResorts = (): ResortProps[] => {
-  return resortsData;
-};
-
 export const filterResorts = (filterParams?: FilterResortsProps) => {
   if (!filterParams) return resortsData;
   return filter(
