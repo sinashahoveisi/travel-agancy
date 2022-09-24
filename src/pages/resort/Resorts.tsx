@@ -5,7 +5,7 @@ import map from 'lodash/map';
 import some from 'lodash/some';
 import {filterResorts, sortResorts} from '@/utils/resortUtil';
 import ResortCard from '@/components/card/ResortCard';
-import type {FilterResortsProps, ResortProps, SortTypeResortsProps} from '@/types/resort';
+import type {FilterResortsProps, ResortProps, SortTypeResortsType} from '@/types/resort';
 import FilterResort from '@/containers/resorts/FilterResort';
 import SortResort from '@/containers/resorts/SortResort';
 import bucketAtom from '@/atoms/bucketAtom';
@@ -13,7 +13,7 @@ import bucketAtom from '@/atoms/bucketAtom';
 const Resorts = () => {
   const [bucket, setBucket] = useAtom(bucketAtom);
   const [filters, setFilters] = useState<FilterResortsProps | undefined>(undefined);
-  const [sortType, setSortType] = useState<SortTypeResortsProps>('title');
+  const [sortType, setSortType] = useState<SortTypeResortsType>('title');
 
   const filteredResorts = useMemo(() => filterResorts(filters), [filters]);
   const sortedFilteredResorts = useMemo(() => sortResorts(filteredResorts, sortType), [filteredResorts, sortType]);

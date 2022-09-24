@@ -1,8 +1,8 @@
 import type {ChangeEvent, FC} from 'react';
-import type {SortTypeResortsProps} from '@/types/resort';
+import type {SortTypeResortsType} from '@/types/resort';
 
 interface Props {
-  onChange(type: SortTypeResortsProps): void;
+  onChange(type: SortTypeResortsType): void;
 }
 
 const SortResort: FC<Props> = ({onChange}) => {

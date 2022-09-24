@@ -12,4 +12,4 @@ export type FilterResortsProps = {
   maxPrice?: number;
 };
 
-export type SortTypeResortsProps = 'title' | 'price';
+export type SortTypeResortsType = 'title' | 'price';

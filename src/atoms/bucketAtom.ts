@@ -1,21 +1,25 @@
-import {atom} from 'jotai';
 import {atomWithReducer} from 'jotai/utils';
 import remove from 'lodash/remove';
-import {ResortProps} from '@/types/resort';
+import {getFromStorage, saveToStorage} from '@/utils/storage';
+import type {ResortProps} from '@/types/resort';
+import type {BucketActionProps} from '@/types/bucket';
 
-function callReducer(state: any[], action: any) {
+function callReducer(state: ResortProps[], action: BucketActionProps) {
   switch (action.type) {
     case 'ADD_RESORT':
+      const newAddState = [...state, action.resort];
+      saveToStorage('bucket', newAddState);
       return [...state, action.resort];
     case 'DELETE_RESORT':
-      const newState = [...state];
-      remove(newState, ['id', action.id]);
-      return newState;
+      const newRemoveState = [...state];
+      remove(newRemoveState, ['id', action.id]);
+      saveToStorage('bucket', newRemoveState);
+      return newRemoveState;
     default:
       return {...state};
   }
 }
 
-const bucketAtom = atomWithReducer([], callReducer);
+const bucketAtom = atomWithReducer(getFromStorage('bucket') || [], callReducer);
 
 export default bucketAtom;
