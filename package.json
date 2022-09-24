@@ -12,9 +12,12 @@
     "update": "npx npm-check-updates"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.8",
+    "daisyui": "^2.31.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.36.1",
     "react-router-dom": "^6.4.1"
   },
   "devDependencies": {

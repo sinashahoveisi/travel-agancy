@@ -2,7 +2,7 @@ import MyRoutes from './routes';
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="container">
       <MyRoutes />
     </div>
   );
