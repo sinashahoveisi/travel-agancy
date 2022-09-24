@@ -11,8 +11,6 @@ type Props = {
 };
 
 const PaginateResort: FC<Props> = ({currentPage = 1, lastPage, onChangePage}) => {
-  if (lastPage === 1) return null;
-
   return (
     <div className="col-span-full my-12 flex flex-col items-center">
       <div className="flex text-gray-700">
@@ -77,7 +75,7 @@ const PaginateResort: FC<Props> = ({currentPage = 1, lastPage, onChangePage}) =>
             </button>
           )}
         </div>
-        {currentPage !== lastPage && (
+        {currentPage < lastPage && (
           <button
             type="button"
             className="ml-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-gray-200"

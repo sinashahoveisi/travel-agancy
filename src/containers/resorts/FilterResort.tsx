@@ -3,6 +3,7 @@ import {useForm} from 'react-hook-form';
 import * as yup from 'yup';
 import clsx from 'clsx';
 import {yupResolver} from '@hookform/resolvers/yup';
+import isNaN from 'lodash/isNaN';
 import TextInput from '@/components/input/TextInput';
 import type {FilterResortsProps} from '@/types/resort';
 
@@ -13,8 +14,14 @@ interface Props {
 
 const validationSchema = yup.object().shape({
   title: yup.string().trim().nullable(),
-  minPrice: yup.number().nullable(),
-  maxPrice: yup.number().nullable()
+  minPrice: yup
+    .number()
+    .transform((value) => (isNaN(value) ? undefined : value))
+    .nullable(),
+  maxPrice: yup
+    .number()
+    .transform((value) => (isNaN(value) ? undefined : value))
+    .nullable()
 });
 
 const FilterResort: FC<Props> = ({onFilter, allowRemoveFilter}) => {
@@ -25,8 +32,8 @@ const FilterResort: FC<Props> = ({onFilter, allowRemoveFilter}) => {
   const onRemoveFilter = () => {
     reset({
       title: '',
-      minPrice: '',
-      maxPrice: ''
+      minPrice: NaN,
+      maxPrice: NaN
     });
     onFilter();
   };

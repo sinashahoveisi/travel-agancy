@@ -1,6 +1,7 @@
 import {useState, useMemo} from 'react';
 import {useAtom} from 'jotai';
-import isUndefined from 'lodash/isUndefined';
+import compact from 'lodash/compact';
+import values from 'lodash/values';
 import map from 'lodash/map';
 import some from 'lodash/some';
 import get from 'lodash/get';
@@ -38,7 +39,7 @@ const Resorts = () => {
           </div>
         </div>
       </div>
-      <FilterResort onFilter={setFilters} allowRemoveFilter={!isUndefined(filters)} />
+      <FilterResort onFilter={setFilters} allowRemoveFilter={!!compact(values(filters))?.length} />
       <SortResort onChange={setSortType} />
       <section className="xxl:grid-cols-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {map(get(sortedFilteredResorts, page - 1), (resort: ResortProps) => (
